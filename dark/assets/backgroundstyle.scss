@@ -1,0 +1,225 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #150d35;
+  padding: 0;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #81a6e0;
+  background: linear-gradient(to bottom, #81a6e0 0%, #cc7bc5 100%);
+}
+
+svg {
+  opacity: 1;
+}
+svg.hide {
+  display: none;
+}
+
+svg * {
+  stroke: inherit;
+  transform: inherit;
+  transform-origin: inherit;
+  animation-delay: inherit;
+  stroke: #ffffff;
+  stroke-width:inherit;
+}
+
+svg {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  opacity: 0.9;
+  position: absolute;
+}
+svg.star {
+  width: 12px;
+  height: 12px;
+  opacity: 0.4;
+}
+.stars-wrapper {
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#main-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+// toggle
+@import url("https://fonts.googleapis.com/css?family=Kodchasan:700");
+$pink: #BF85CB;
+$purple: #81A6E0;
+
+#toggle-wrapper {
+  width: 280px;
+  height: 160px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0 0 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Kodchasan", Arial, sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #81a6e0;
+  p {
+    margin-top: 0;
+  }
+}
+
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+}
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    left: -99em;
+}
+.toggle {
+  cursor: pointer;
+  position: relative;
+  width: 100px;
+  height: 50px;
+  background-color: $purple;
+  border-radius: 30px;
+  transition: background-color 0.2s cubic-bezier(0.6, 0, 0.2, 1);
+  &:before,
+  &:after {
+    position: absolute;
+    top: 15px;
+  }
+  &:before {
+    content: "OFF";
+    left: -58px;
+    color: $pink;
+  }
+  &:after {
+    content: "ON";
+    right: -48px;
+    color: $purple;
+  }
+}
+.moon-toggle {
+  margin:0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(95deg);
+  transform-origin: 50% 50%;
+  transition: all 0.5s cubic-bezier(0.6, 0, 0.2, 1);
+}
+.toggle-handler {
+  margin: 0;
+  position: relative;
+  top: 3px;
+  left: 3px;
+  width: 44px;
+  height: 44px;
+  border-radius: 30px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s cubic-bezier(0.6, 0, 0.2, 1);
+}
+
+input:checked {
+  + .toggle {
+    background-color: $pink;
+
+    &:before {
+      color: $purple;
+    }
+    &:after {
+      color: $pink;
+    }
+    .toggle-handler {
+      transform: translateX(50px);
+    }
+    .moon-toggle {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+// Starts by Saransh Sinha
+// https://codepen.io/saransh/pen/BKJun
+
+@function multiple-box-shadow ($n) {
+  $value: "#{random(2000)}px #{random(2000)}px #FFF";
+  @for $i from 2 through $n {
+    $value: "#{$value} , #{random(2000)}px #{random(2000)}px #FFF";
+  }
+
+  @return unquote($value);
+}
+
+$shadows-small: multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big: multiple-box-shadow(100);
+
+#stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: $shadows-small;
+  animation: animStar 50s linear infinite;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: $shadows-small;
+  }
+}
+
+#stars2 {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: $shadows-medium;
+  animation: animStar 100s linear infinite;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: $shadows-medium;
+  }
+}
+
+#stars3 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: $shadows-big;
+  animation: animStar 150s linear infinite;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
