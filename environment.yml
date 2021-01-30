@@ -7,18 +7,22 @@ channels:
 dependencies:
   - blas=1.0=mkl
   - brotlipy=0.7.0=py39hcbf5805_1001
-  - ca-certificates=2021.1.19=hecd8cb5_0
+  - ca-certificates=2020.10.14=0
   - certifi=2020.12.5=py39h6e9494a_1
   - cffi=1.14.4=py39h7786acb_1
   - chardet=4.0.0=py39h6e9494a_1
   - click=7.1.2=py_0
   - cryptography=3.3.1=py39h79a2c39_1
+  - flask=1.1.2=py_0
   - idna=2.10=pyh9f0ad1d_0
   - intel-openmp=2019.4=233
+  - itsdangerous=1.1.0=py_0
+  - jinja2=2.11.2=py_0
   - joblib=0.17.0=py_0
   - libcxx=10.0.0=1
   - libedit=3.1.20191231=h1de35cc_1
   - libffi=3.3=hb1e8313_2
+  - markupsafe=1.1.1=py39h9ed2024_0
   - mkl=2019.4=233
   - mkl-service=2.3.0=py39h9ed2024_0
   - mkl_fft=1.0.6=py39h16bde0e_0
@@ -52,6 +56,7 @@ dependencies:
   - update_checker=0.18.0=pyh9f0ad1d_0
   - urllib3=1.26.3=pyhd8ed1ab_0
   - websocket-client=0.57.0=py39h6e9494a_4
+  - werkzeug=1.0.1=py_0
   - wheel=0.36.2=pyhd3eb1b0_0
   - xz=5.2.5=h1de35cc_0
   - yfinance=0.1.54=py_0
