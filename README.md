@@ -1,2 +1,2 @@
 # stonks
-HoyaHacks 2021 Submission
+HoyaHacks 2021 Submission Project Repository
