@@ -1,30 +1,51 @@
 import nltk
+import json
+import time
+import csv
+import StockListMaintainer
+
+
 # requires punkt
+maintainer = StockListMaintainer.StockListMaintainer()
 class StockNameDetector:
-    # the time window used for detecting prefixed tickers and counting them, in hours
-    prefixCountingTimeWindow = 24 * 7
-    # the amount of appearances of the prefixed ticker in the time window before they starts to be counted without a prefix
-    symbolPrefixlessThreshold = 500
+    known_stocks_file = "known_stocks.json"
+    valid_stock_symbols_file = "valid_stock_symbols.csv"
+    vssf_arr = []
     def __init__(self):
-        # should contain a dictionary of ticker keys mapped to a list of timestamps for prefixed instances
-        self.knownStocks = {}
+        pass
     def detectTickers(self, post):
-        detected_symbols = []
-        post_tokens = nltk.word_tokenize(post)
-        # not perfect but will detect all stocks currently being hyped up
-        for i,token in enumerate(post_tokens):
-            if token == "$" and i+1 < len(post_tokens) and post_tokens[i+1] != "$" and not any(char.isdigit() for char in post_tokens[i+1]):
-                if post_tokens[i+1] not in detected_symbols:
-                    detected_symbols.append(post_tokens[i+1])
-            elif token in self.knownStocks:
-                if len(self.knownStocks[token]) >= prefixCountingTimeWindow:
-                    detected_symbols.append(token)
+        with open(self.valid_stock_symbols_file, "r") as vssf:
+            with open(self.known_stocks_file, "r+") as ksf:
+                known_stocks_changed = False
+                try:
+                    known_stocks = json.load(ksf)
+                except ValueError:
+                    known_stocks = {}
+                valid_stock_symbol_reader = csv.reader(vssf, delimiter="\t")
+                detected_symbols = []
+                post_tokens = nltk.word_tokenize(post)
+                for t in post_tokens:
+                    if not t in detected_symbols:
+                        if t in known_stocks:
+                            detected_symbols.append(t)
+                            known_stocks[t].append(time.time())
+                            known_stocks_changed = True
+                        if not t in known_stocks:
+                            if(len(self.vssf_arr) == 0):
+                                self.vssf_arr = [s[0] for s in valid_stock_symbol_reader]
+                            if t in self.vssf_arr:
+                                detected_symbols.append(t)
+                                known_stocks[t] = [time.time()]
+                                known_stocks_changed = True
+                                #print(t, "accepted as ticker")
+                            else:
+                                pass
+                                #print(t, "not accepted as ticker")
+                if known_stocks_changed:
+                    ksf.seek(0)
+                    ksf.truncate()
+                    json.dump(known_stocks, ksf)
         return detected_symbols
-    def trimKnownStocks(self, time):
-        for stock in self.knownStocks:
-            for timestamp in knownStocks[stock]:
-                if timestamp < time - prefixCountingTimeWindow * 60 * 60:
-                    self.knownStocks[stock].remove[timestamp]
 
 if __name__ == "__main__":
     detector = StockNameDetector()

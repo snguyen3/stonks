@@ -1,0 +1,21 @@
+{
+  "buy" : 5.0,
+  "buy calls" : 5.0,
+  "sell puts" : 5.0,
+  "bull" : 5.0,
+  "diamond hands" : 5.0,
+  "hodl" : 5.0,
+  "hold" : 5.0,
+  "to the moon" : 5.0,
+  "pump" : 5.0,
+  "pumping" : 5.0,
+  "not selling" : 5.0,
+
+  "sell" : -5.0,
+  "buy puts" : -5.0,
+  "sell calls" : -5.0,
+  "bear" : -5.0,
+  "bogged" : -5.0,
+  "dump" : -5.0,
+  "dumping" : -5.0
+}
