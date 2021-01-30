@@ -1,12 +1,13 @@
 name: stonks
 channels:
+  - ranaroussi
   - anaconda
   - conda-forge
   - defaults
 dependencies:
   - blas=1.0=mkl
   - brotlipy=0.7.0=py39hcbf5805_1001
-  - ca-certificates=2020.10.14=0
+  - ca-certificates=2021.1.19=hecd8cb5_0
   - certifi=2020.12.5=py39h6e9494a_1
   - cffi=1.14.4=py39h7786acb_1
   - chardet=4.0.0=py39h6e9494a_1
@@ -22,6 +23,7 @@ dependencies:
   - mkl-service=2.3.0=py39h9ed2024_0
   - mkl_fft=1.0.6=py39h16bde0e_0
   - mkl_random=1.0.2=py39h16bde0e_0
+  - multitasking=0.0.9=py_0
   - ncurses=6.2=h0a44026_1
   - nltk=3.5=py_0
   - numpy=1.19.2=py39he57783f_0
@@ -52,5 +54,6 @@ dependencies:
   - websocket-client=0.57.0=py39h6e9494a_4
   - wheel=0.36.2=pyhd3eb1b0_0
   - xz=5.2.5=h1de35cc_0
+  - yfinance=0.1.54=py_0
   - zlib=1.2.11=h1de35cc_3
 prefix: /Users/Sam/opt/anaconda3/envs/stonks
