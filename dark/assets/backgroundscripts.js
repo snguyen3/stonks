@@ -7,7 +7,6 @@ const select = function(el) {
 };
 
 const wrapper = select("main-wrapper");
-const checkBox = select("toggle");
 const images = [
   { id: "#planet-1", name:"planet-1" },
   { id: "#planet-2", name:"planet-2" },
@@ -19,12 +18,11 @@ const images = [
 ];
 const stars = ["#star-1", "#star-2", "#star-3"];
 
-checkBox.addEventListener("change", checkStatus);
 
 window.addEventListener("resize", function() {
   w = window.innerWidth;
   h = window.innerHeight;
-  init();
+//   init();
 });
 
 // building the pattern
@@ -81,43 +79,43 @@ Star.prototype.attach = function() {
 const spacing = 130;
 let i, s;
 
-function init() {
-  while (wrapper.firstChild) {
-    wrapper.removeChild(wrapper.firstChild);
-  }
-  i = 0;
-  s = 0;
+// function init() {
+//   while (wrapper.firstChild) {
+//     wrapper.removeChild(wrapper.firstChild);
+//   }
+//   i = 0;
+//   s = 0;
 
-  for (let y = 0; y <= h; y += spacing) {
-    if (y % (spacing * 2) === 0) {
-      for (let x = 0; x <= w; x += spacing) {
-        if (x % (spacing * 2) === 0) {
-          draw(x, y + 10);
-        } else {
-          draw(x, y - 10);
-        }
-      }
-    } else {
-      for (let x = -(spacing / 2); x <= w; x += spacing) {
-        if ((x + spacing / 2) % (2 * spacing) === 0) {
-          draw(x, y + 10);
-        } else {
-          draw(x, y - 10);
-        }
-      }
-    }
-  }
-  const newSpacing = spacing - 40;
-  for (let y = newSpacing; y <= h; y += spacing) {
-    for (let x = -(spacing / 2); x <= w; x += spacing) {
-      if ((x + spacing / 2) % (2 * spacing) === 0) {
-        drawStar(x, y + 10);
-      } else {
-        drawStar(x, y - 10);
-      }
-    }
-  }
-}
+//   for (let y = 0; y <= h; y += spacing) {
+//     if (y % (spacing * 2) === 0) {
+//       for (let x = 0; x <= w; x += spacing) {
+//         if (x % (spacing * 2) === 0) {
+//           draw(x, y + 10);
+//         } else {
+//           draw(x, y - 10);
+//         }
+//       }
+//     } else {
+//       for (let x = -(spacing / 2); x <= w; x += spacing) {
+//         if ((x + spacing / 2) % (2 * spacing) === 0) {
+//           draw(x, y + 10);
+//         } else {
+//           draw(x, y - 10);
+//         }
+//       }
+//     }
+//   }
+//   const newSpacing = spacing - 40;
+//   for (let y = newSpacing; y <= h; y += spacing) {
+//     for (let x = -(spacing / 2); x <= w; x += spacing) {
+//       if ((x + spacing / 2) % (2 * spacing) === 0) {
+//         drawStar(x, y + 10);
+//       } else {
+//         drawStar(x, y - 10);
+//       }
+//     }
+//   }
+// }
 
 function draw(x, y) {
   const image = images[i];
@@ -133,20 +131,20 @@ function draw(x, y) {
   wrapper.appendChild(el.svg);
 }
 
-function drawStar(x, y) {
-  const image = stars[s];
-  const star = new Star(image, x, y);
-  if (s === stars.length - 1) {
-    s = 0;
-  } else {
-    s++;
-  }
-  star.attach();
-  star.svg.appendChild(star.use);
-  wrapper.appendChild(star.svg);
-}
+// function drawStar(x, y) {
+//   const image = stars[s];
+//   const star = new Star(image, x, y);
+//   if (s === stars.length - 1) {
+//     s = 0;
+//   } else {
+//     s++;
+//   }
+//   star.attach();
+//   star.svg.appendChild(star.use);
+//   wrapper.appendChild(star.svg);
+// }
 
-init();
+// init();
 
 // animation functions
 const rocket = document.querySelector("symbol#rocket");
@@ -161,7 +159,7 @@ const constellationStars = document.querySelectorAll(
 let cometLines = document.querySelectorAll("symbol#comet .trail");
 
 const tlRocket = new TimelineMax({ repeat: -1, paused: true });
-tlMoonFull.to(rocket, 20, { rotation: 360, ease: Power0.easeNone });
+tlRocket.to(rocket, 20, { rotation: 360, ease: Power0.easeNone });
 
 const tlGalaxy = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 tlGalaxy.to(galaxy, 5, { rotationX: -45, ease: Power0.easeNone });
