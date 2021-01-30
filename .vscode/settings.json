@@ -1,0 +1,12 @@
+"editor.formatOnSave": true,
+"[javascript]": {
+    "editor.formatOnSave": true
+},
+"beautify.JSfiles": [
+    "js",
+    "json",
+    "jsbeautifyrc",
+    "jshintrc",
+    "ts"
+]
+"eslint.autoFixOnSave": true
