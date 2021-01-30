@@ -20,28 +20,28 @@ body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-svg {
+/* svg {
   opacity: 1;
 }
 
 svg.hide {
   display: none;
-}
+} */
 
-svg * {
+/* svg * {
   stroke: inherit;
   -webkit-animation-delay: inherit;
           animation-delay: inherit;
   stroke: #ffffff;
-}
+} */
 
-svg {
+/* svg {
   width: 80px;
   height: 80px;
   margin: 10px;
   opacity: 0.9;
   position: absolute;
-}
+} */
 
 svg.star {
   width: 12px;
