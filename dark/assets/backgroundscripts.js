@@ -79,43 +79,43 @@ Star.prototype.attach = function() {
 const spacing = 130;
 let i, s;
 
-// function init() {
-//   while (wrapper.firstChild) {
-//     wrapper.removeChild(wrapper.firstChild);
-//   }
-//   i = 0;
-//   s = 0;
+function init() {
+  while (wrapper.firstChild) {
+    wrapper.removeChild(wrapper.firstChild);
+  }
+  i = 0;
+  s = 0;
 
-//   for (let y = 0; y <= h; y += spacing) {
-//     if (y % (spacing * 2) === 0) {
-//       for (let x = 0; x <= w; x += spacing) {
-//         if (x % (spacing * 2) === 0) {
-//           draw(x, y + 10);
-//         } else {
-//           draw(x, y - 10);
-//         }
-//       }
-//     } else {
-//       for (let x = -(spacing / 2); x <= w; x += spacing) {
-//         if ((x + spacing / 2) % (2 * spacing) === 0) {
-//           draw(x, y + 10);
-//         } else {
-//           draw(x, y - 10);
-//         }
-//       }
-//     }
-//   }
-//   const newSpacing = spacing - 40;
-//   for (let y = newSpacing; y <= h; y += spacing) {
-//     for (let x = -(spacing / 2); x <= w; x += spacing) {
-//       if ((x + spacing / 2) % (2 * spacing) === 0) {
-//         drawStar(x, y + 10);
-//       } else {
-//         drawStar(x, y - 10);
-//       }
-//     }
-//   }
-// }
+  for (let y = 0; y <= h; y += spacing) {
+    if (y % (spacing * 2) === 0) {
+      for (let x = 0; x <= w; x += spacing) {
+        if (x % (spacing * 2) === 0) {
+          draw(x, y + 10);
+        } else {
+          draw(x, y - 10);
+        }
+      }
+    } else {
+      for (let x = -(spacing / 2); x <= w; x += spacing) {
+        if ((x + spacing / 2) % (2 * spacing) === 0) {
+          draw(x, y + 10);
+        } else {
+          draw(x, y - 10);
+        }
+      }
+    }
+  }
+  const newSpacing = spacing - 40;
+  for (let y = newSpacing; y <= h; y += spacing) {
+    for (let x = -(spacing / 2); x <= w; x += spacing) {
+      if ((x + spacing / 2) % (2 * spacing) === 0) {
+        drawStar(x, y + 10);
+      } else {
+        drawStar(x, y - 10);
+      }
+    }
+  }
+}
 
 function draw(x, y) {
   const image = images[i];
@@ -131,20 +131,20 @@ function draw(x, y) {
   wrapper.appendChild(el.svg);
 }
 
-// function drawStar(x, y) {
-//   const image = stars[s];
-//   const star = new Star(image, x, y);
-//   if (s === stars.length - 1) {
-//     s = 0;
-//   } else {
-//     s++;
-//   }
-//   star.attach();
-//   star.svg.appendChild(star.use);
-//   wrapper.appendChild(star.svg);
-// }
+function drawStar(x, y) {
+  const image = stars[s];
+  const star = new Star(image, x, y);
+  if (s === stars.length - 1) {
+    s = 0;
+  } else {
+    s++;
+  }
+  star.attach();
+  star.svg.appendChild(star.use);
+  wrapper.appendChild(star.svg);
+}
 
-// init();
+init();
 
 // animation functions
 const rocket = document.querySelector("symbol#rocket");
@@ -247,19 +247,19 @@ function stopAnimation() {
 }
 
 
-// images.map(el => {
-//     const element = el.id + ' .drawPath';
-//     const objectPaths = document.querySelectorAll(element);
-//     const objectTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-//     const delay = Math.floor (Math.random() * 20) + 10;
-//     const repeatDelay = Math.floor (Math.random() * 40) + 20;
-//     // animating
-//     objectPaths.forEach((path, i) => {
-//       const tl = new TimelineMax({repeatDelay:repeatDelay, delay:delay, paused: false})
-//       tl.to(path, 3, {drawSVG:"0%"});
-//       objectTl.add(tl, i);
-//     })
-//   })
+images.map(el => {
+    const element = el.id + ' .drawPath';
+    const objectPaths = document.querySelectorAll(element);
+    const objectTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+    const delay = Math.floor (Math.random() * 20) + 10;
+    const repeatDelay = Math.floor (Math.random() * 40) + 20;
+    // animating
+    objectPaths.forEach((path, i) => {
+      const tl = new TimelineMax({repeatDelay:repeatDelay, delay:delay, paused: false})
+      tl.to(path, 3, {drawSVG:"0%"});
+      objectTl.add(tl, i);
+    })
+  })
 
 const planet1Draw = document.querySelectorAll('#planet-1 .drawPath');
 const planet1DrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
