@@ -1,4 +1,4 @@
-import json, time
+import json, time, cProfile
 import WSBSentimentAnalyzer, StockNameDetector
 import ast
 analyzer = WSBSentimentAnalyzer.SentimentAnalyzer()
@@ -87,8 +87,8 @@ def getSentimentData(tickers, period, interval):
         ticker_filtered_lines[t] = []
         ticker_binned_lines[t] = {}
 
-    max_lines = 5000
-    update_interval = 1000
+    max_lines = 1000
+    update_interval = 100
     with open(reddit_posts_file, 'r', encoding="utf-8") as rpf:
         print("Reading/filtering lines from file...")
         lines = rpf.readlines()
@@ -127,4 +127,5 @@ def getSentimentData(tickers, period, interval):
     return retVal
 if __name__ == "__main__":
     psm = PostSentimentMaintainer()
-    print(getSentimentData(['GME', 'AAPL', 'TSLA'],'1D','5m'))
+    #cProfile.run("print(getSentimentData(['GME'],'5Y','3M'))")
+    print(getSentimentData(['GME'], '5Y', '3M'))
