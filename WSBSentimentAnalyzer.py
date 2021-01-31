@@ -1,5 +1,6 @@
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import json
+import ast
 
 class SentimentAnalyzer:
     sentimentIntensityAnalyzer = None
@@ -48,12 +49,41 @@ class SentimentAnalyzer:
         return cleaned_tokens
 
 
+class RedditDataParser:
+    def getRedditData(self, filename, entries):
+        retVal = []
+        with open(filename, 'r') as dataFile:
+            lines = dataFile.readlines()
+            for i in range(len(lines) if entries > len(lines) else entries):
+                line = lines[i]
+                retVal.append(ast.literal_eval(line))
+        return retVal
+
+    def parseData(self, data):
+        retVal = []
+        for entry in data:
+            content = ""
+            if('title' in entry.keys()):
+                content = entry['title']
+            else:
+                content = ''
+            parsedEntry = {
+                'author': entry['author'],
+                'content' : content,
+                'date' : entry['created_utc'],
+                'ups': entry['score']
+            }
+            retVal.append(parsedEntry)
+        return retVal
+
 if __name__ == "__main__":
     analyzer = SentimentAnalyzer()
-    wsb_phrases = "wsb_phrases.json"
-    with open(wsb_phrases, "r") as wsbp:
-        new_words = json.load(wsbp)
-    analyzer.sentimentIntensityAnalyzer.lexicon.update(new_words)
+    parser = RedditDataParser()
+    data = parser.getRedditData('wsb_8pct.txt', 80000)
+    parsed_data = parser.parseData(data)
+    with open("wsb-sample.csv", "w") as of:
+        of.writelines(str(line) + '\n' for line in parsed_data)
+    exit()
 
 
     example_posts = ["$TSLA TO THE MOON BABEEEEE", "SELL SELL SELL AAAAAAAAAAAAAA"]

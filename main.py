@@ -101,7 +101,7 @@ def getStockData(tickers, period, interval):
         'data':[[x,y],[x,y],[x,y],[x,y]]
     },
     {
-        'ticker':'name2',
+        'name':'ticker2',
         'data':[[x,y],[x,y],[x,y],[x,y]]
     }]
     """
