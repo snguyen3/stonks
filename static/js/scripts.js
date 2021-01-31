@@ -1,5 +1,10 @@
 const ticker = "DogeCoin";
 const subreddit = "SatoshiStreetBets";
+
+document.body.scroll = "no";
+document.body.style.overflow = 'hidden';
+document.height = window.innerHeight;
+
 window.Apex = {
   chart: {
     foreColor: '#ccc',
@@ -33,6 +38,7 @@ var spark4 = JSON.parse(JSON.stringify(spark_default))
 
 spark1.chart.id = 'spark1';
 spark1.series[0].data = [25, 66, 41, 59, 25, 44, 12, 36, 9, 21]
+spark1.tooltip.enabled = false;
 
 spark2.chart.id = 'spark2';
 spark2.series[0].data = [12, 14, 2, 47, 32, 44, 14, 55, 41, 69]
