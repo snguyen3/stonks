@@ -16,8 +16,8 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="stylesheet" href="assets/backgroundstyle.scss" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="stylesheet" href="/static/css/backgroundstyle.scss" />
 </head>
 
 <body>
@@ -171,8 +171,8 @@
             <div class="col-md-3">
               <div class="box box1">
                 <div class="details">
-                  <h3>{{ data['NASDAQ']['prices'][-1][1] }}</h3>
-                  <h4>NASDAQ</h4>
+                  <h3>{{ data['NDX']['prices'][-1][1] }}</h3>
+                  <h4>NASDAQ 100</h4>
                 </div>
                 <div id="spark1"></div>
               </div>
@@ -189,7 +189,7 @@
             <div class="col-md-3">
               <div class="box box3">
                 <div class="details">
-                  <h3>{{ data['BTC']['prices'][-1][1] }}</h3>
+                  <h3>{{ data['AAPL']['prices'][-1][1] }}</h3>
                   <h4>Bitcoin</h4>
                 </div>
                 <div id="spark3"></div>
@@ -198,7 +198,7 @@
             <div class="col-md-3">
               <div class="box box4">
                 <div class="details">
-                  <h3>{{ data['DOGE']['prices'][-1][1] }}</h3>
+                  <h3>{{ data['SPY']['prices'][-1][1] }}</h3>
                   <h4>Dogecoin</h4>
                 </div>
                 <div id="spark4"></div>
@@ -256,15 +256,15 @@
     <div id="chart-line3"></div>
 
     <div id="bruhhhh"></div> -->
-  <script src="assets/data/DummyData.js"></script>
-  <script src="assets/ApexChartOptions.js"></script>
+  <script src="/static/data/DummyData.js"></script>
+  <script src="/static/js/ApexChartOptions.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
   <!-- installing few libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="assets/scripts.js"></script>
-  <script src="assets/backgroundscripts.js"></script>
+  <script src="/static/js/scripts.js"></script>
+  <script src="/static/js/backgroundscripts.js"></script>
 
 
 </div>

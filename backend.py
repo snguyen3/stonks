@@ -1,17 +1,20 @@
 from flask import Flask, render_template, request, redirect
 import random
 import time
+import main
 
-app = Flask(__name__, template_folder=".", static_folder=".")
+app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 @app.route('/index.html', methods=['GET'])
 def dashboard():
     data = {}
-    for i,t in enumerate(['NASDAQ','GME','BTC','DOGE']):
-        data[t] = {}
-        data[t]['prices'] = [(time.time()-random.randint(0,10), random.uniform(1,100)) for i in range(50)]
-        data[t]['sentiments'] = [(time.time()-random.randint(0,10), random.uniform(-1, 1)) for i in range(50)]
+    tickers = ['NDX','GME','AAPL','SPY']
+    stock_data = main.getStockData(tickers, "1mo", "1d")
+    for i,d in enumerate(stock_data):
+        data[d['name']] = {}
+        data[d['name']]['prices'] = d['data']
+        data[d['name']]['sentiments'] = [(time.time()-random.randint(0,10), random.uniform(-1, 1)) for i in range(50)]
 
     return render_template('index.html', data=data)
 
