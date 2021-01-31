@@ -3,6 +3,7 @@ import random
 import time
 import WSBSentimentAnalyzer
 import analytics_tools
+from PostSentimentMaintainer import getSentimentData
 
 app = Flask(__name__)
 
@@ -38,7 +39,6 @@ def handleGetFinancialData():
 
 @app.route('/api/v1/sentimentData', methods=['GET'])
 def handleGetSentimentData():
-    return jsonify({"key": "Error: Not yet implemented."})
     ticker = ''
     period = ''
     interval = ''
@@ -58,6 +58,10 @@ def handleGetSentimentData():
         interval = str(request.args['interval'])
     else:
         return "Error: No interval field provided. Please specify a interval."
+
+    sentis = getSentimentData([ticker], period, interval)
+
+    return jsonify({'data': sentis})
 
 
 analyzer = WSBSentimentAnalyzer.SentimentAnalyzer()

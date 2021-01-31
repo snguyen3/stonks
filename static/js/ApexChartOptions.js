@@ -50,15 +50,7 @@ var defaultLineOptions = {
     annotations: {
         yaxis: [{
             y: 30,
-            borderColor: '#999',
-            label: {
-                show: true,
-                text: 'Support',
-                style: {
-                    color: "#fff",
-                    background: '#00E396'
-                }
-            }
+            borderColor: '#999'
         }],
         legend: {
             position: 'top',
@@ -91,7 +83,8 @@ var defaultLineOptions = {
             left: 2,
             blur: 4,
             opacity: 1,
-        }
+        },
+        fontFamily: 'Comic Sans MS, Comic Sans, cursive'
     },
     stroke: {
         curve: 'smooth',

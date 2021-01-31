@@ -1,4 +1,4 @@
-const ticker = "DogeCoin";
+const ticker = "NDX";
 const subreddit = "SatoshiStreetBets";
 
 function fillSparkChart(tickerName) {
@@ -70,8 +70,8 @@ spark2.series[0].data = [12, 14, 2, 47, 32, 44, 14, 55, 41, 69]
 spark3.chart.id = 'spark3';
 spark3.series[0].data = [47, 45, 74, 32, 56, 31, 44, 33, 45, 19]
 
-spark3.chart.id = 'spark4';
-spark3.series[0].data = [15, 75, 47, 65, 14, 32, 19, 54, 44, 61]
+spark4.chart.id = 'spark4';
+spark4.series[0].data = [15, 75, 47, 65, 14, 32, 19, 54, 44, 61]
 
 
 new ApexCharts(document.querySelector("#spark1"), spark1).render();
@@ -102,22 +102,38 @@ stonkOptions.title = {
   align: 'left',
 }
 stonkOptions.subtitle = {
-  text: 'Stonk Price',
+  text: 'Stonk Price from Yahoo Finance',
 }
 stonkOptions.legend = {
   position: 'top',
   horizontalAlign: 'right',
 }
 
+sentiUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+sentiUrl.searchParams.append("ticker", "NDX")
+sentiUrl.searchParams.append("period", "5y")
+sentiUrl.searchParams.append("interval", "1mo")
+axios({
+  method: 'GET',
+  url: sentiUrl.href
+}).then(function (response) {
+  data = response.data['data'][0]['data'] // This should contain the stonk name and data -- Everything you need to input into the ApexChart
+  sentimentChart.updateSeries([{
+    name: "Quack1",
+    data: data
+  }])
+})
+
 
 var sentimentOptions = JSON.parse(JSON.stringify(defaultLineOptions));
 sentimentOptions.id = "Sentiment Chart"
 sentimentOptions.title = {
-  text: `${ticker}`,
+  text: `NDX`,
   align: 'left',
 }
+sentimentOptions.colors = ["#FFD700"]
 sentimentOptions.subtitle = {
-  text: `Sentiment on reddit.com/r/${subreddit}`,
+  text: `(Future) Sentiment on reddit.com/r/${subreddit}`,
 }
 sentimentOptions.legend = {
   position: 'top',
@@ -257,7 +273,7 @@ function NDXfunction() {
       name: "NASDAQ",
       data: data
     }])
-    stonkChart.updateOptions({
+    sentimentChart.updateOptions({
       title: {
         text: 'NASDAQ',
         align: 'left'
@@ -290,6 +306,12 @@ function GMEfunction() {
         align: 'left'
       }
     })
+    sentimentChart.updateOptions({
+      title: {
+        text: 'Gamestop',
+        align: 'left'
+      }
+    })
   })
 }
 
@@ -316,6 +338,12 @@ function TSLAfunction() {
         align: 'left'
       }
     })
+    sentimentChart.updateOptions({
+      title: {
+        text: 'Tesla',
+        align: 'left'
+      }
+    })
   })
 }
 document.getElementById("BB-btn").addEventListener("click", BBfunction);
@@ -336,6 +364,12 @@ function BBfunction() {
       data: data
     }])
     stonkChart.updateOptions({
+      title: {
+        text: 'BlackBerry Ltd',
+        align: 'left'
+      }
+    })
+    sentimentChart.updateOptions({
       title: {
         text: 'BlackBerry Ltd',
         align: 'left'
