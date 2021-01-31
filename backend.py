@@ -3,7 +3,7 @@ import random
 import time
 import main
 
-app = Flask(__name__, template_folder=".", static_folder=".")
+app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 @app.route('/index.html', methods=['GET'])
