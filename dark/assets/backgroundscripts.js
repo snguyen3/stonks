@@ -146,173 +146,173 @@ function drawStar(x, y) {
 
 init();
 
-// animation functions
-const rocket = document.querySelector("symbol#rocket");
-const galaxy = document.querySelector("symbol#galaxy");
-const planet1 = document.querySelector("symbol#planet-1");
-const planet2 = document.querySelector("symbol#planet-2");
-const moonCrescent = document.querySelector("symbol#moon-crescent");
-const comet = document.querySelector("symbol#comet");
-const constellationStars = document.querySelectorAll(
-  "symbol#constellation polygon"
-);
-let cometLines = document.querySelectorAll("symbol#comet .trail");
+// // animation functions
+// const rocket = document.querySelector("symbol#rocket");
+// const galaxy = document.querySelector("symbol#galaxy");
+// const planet1 = document.querySelector("symbol#planet-1");
+// const planet2 = document.querySelector("symbol#planet-2");
+// const moonCrescent = document.querySelector("symbol#moon-crescent");
+// const comet = document.querySelector("symbol#comet");
+// const constellationStars = document.querySelectorAll(
+//   "symbol#constellation polygon"
+// );
+// let cometLines = document.querySelectorAll("symbol#comet .trail");
 
-const tlRocket = new TimelineMax({ repeat: -1, paused: true });
-tlRocket.to(rocket, 20, { rotation: 360, ease: Power0.easeNone });
+// const tlRocket = new TimelineMax({ repeat: -1, paused: true });
+// tlRocket.to(rocket, 20, { rotation: 360, ease: Power0.easeNone });
 
-const tlGalaxy = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
-tlGalaxy.to(galaxy, 5, { rotationX: -45, ease: Power0.easeNone });
+// const tlGalaxy = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
+// tlGalaxy.to(galaxy, 5, { rotationX: -45, ease: Power0.easeNone });
 
-const tlPlanet1 = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
-tlPlanet1
-  .to(planet1, 2, { rotation: 7, ease: Power0.easeNone })
-  .to(planet1, 2, { rotation: -2, ease: Power0.easeNone });
+// const tlPlanet1 = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
+// tlPlanet1
+//   .to(planet1, 2, { rotation: 7, ease: Power0.easeNone })
+//   .to(planet1, 2, { rotation: -2, ease: Power0.easeNone });
 
-const tlPlanet2 = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
-tlPlanet2.to(planet2, 0.5, { x: 1, y: 1, ease: Power0.easeNone });
+// const tlPlanet2 = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
+// tlPlanet2.to(planet2, 0.5, { x: 1, y: 1, ease: Power0.easeNone });
 
-const tlComet = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
-const tlCometTrail = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
-tlComet.to(comet, 0.15, { x: 1, y: 1, ease: Power0.easeNone });
-cometLines.forEach((el, i) => {
-  const x2 = parseInt(el.getAttribute("x2")) - 10;
-  const y2 = parseInt(el.getAttribute("y2")) - 10;
-  let tl = new TimelineMax({ repeat: -1, yoyo: true });
-  tl.to(el, 1, { attr: { x2: x2, y2: y2 }, ease: Linear.easeNone });
-  tlCometTrail.add(tl, i / 2);
-});
+// const tlComet = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
+// const tlCometTrail = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
+// tlComet.to(comet, 0.15, { x: 1, y: 1, ease: Power0.easeNone });
+// cometLines.forEach((el, i) => {
+//   const x2 = parseInt(el.getAttribute("x2")) - 10;
+//   const y2 = parseInt(el.getAttribute("y2")) - 10;
+//   let tl = new TimelineMax({ repeat: -1, yoyo: true });
+//   tl.to(el, 1, { attr: { x2: x2, y2: y2 }, ease: Linear.easeNone });
+//   tlCometTrail.add(tl, i / 2);
+// });
 
-const tlMoonCrescent = new TimelineMax({
-  repeat: -1,
-  yoyo: true,
-  paused: true
-});
-tlMoonCrescent
-  .to(moonCrescent, 2, { rotation: 5, ease: Power0.easeNone })
-  .to(moonCrescent, 2, { rotation: -5, ease: Power0.easeNone });
+// const tlMoonCrescent = new TimelineMax({
+//   repeat: -1,
+//   yoyo: true,
+//   paused: true
+// });
+// tlMoonCrescent
+//   .to(moonCrescent, 2, { rotation: 5, ease: Power0.easeNone })
+//   .to(moonCrescent, 2, { rotation: -5, ease: Power0.easeNone });
 
-const tlConstellation = new TimelineMax({ repeat: -1, paused: true });
-constellationStars.forEach((el, i) => {
-  var tl = new TimelineMax({ repeat: -1, yoyo: true });
-  tl.to(el, 1, { opacity: 0.3, ease: Linear.easeNone });
-  tlConstellation.add(tl, i);
-});
+// const tlConstellation = new TimelineMax({ repeat: -1, paused: true });
+// constellationStars.forEach((el, i) => {
+//   var tl = new TimelineMax({ repeat: -1, yoyo: true });
+//   tl.to(el, 1, { opacity: 0.3, ease: Linear.easeNone });
+//   tlConstellation.add(tl, i);
+// });
 
-function checkStatus() {
-  if (checkBox.checked) {
-    animated = true;
-    startAnimation();
+// function checkStatus() {
+//   if (checkBox.checked) {
+//     animated = true;
+//     startAnimation();
 
-  } else {
-    animated = false;
-    stopAnimation();
-  }
-}
+//   } else {
+//     animated = false;
+//     stopAnimation();
+//   }
+// }
 
-function startAnimation() {
-  tlRocket.play();
-  tlMoonCrescent.play();
-  tlPlanet1.play();
-  tlPlanet2.play();
-  tlGalaxy.play();
-  tlComet.play();
-  tlCometTrail.play();
-  tlConstellation.play();
-  planet1DrawTl.play();
-  planet2DrawTl.play();
-  moonFullDrawTl.play();
-  moonCrescentDrawTl.play();
-  galaxyDrawTl.play();
-  constellationDrawTl.play();
-  cometDrawTl.play();
-}
+// function startAnimation() {
+//   tlRocket.play();
+//   tlMoonCrescent.play();
+//   tlPlanet1.play();
+//   tlPlanet2.play();
+//   tlGalaxy.play();
+//   tlComet.play();
+//   tlCometTrail.play();
+//   tlConstellation.play();
+//   planet1DrawTl.play();
+//   planet2DrawTl.play();
+//   moonFullDrawTl.play();
+//   moonCrescentDrawTl.play();
+//   galaxyDrawTl.play();
+//   constellationDrawTl.play();
+//   cometDrawTl.play();
+// }
 
-function stopAnimation() {
-  tlRocket.pause();
-  tlMoonCrescent.pause();
-  tlPlanet1.pause();
-  tlPlanet2.pause();
-  tlGalaxy.pause();
-  tlComet.pause();
-  tlCometTrail.pause();
-  tlConstellation.pause();
-  planet1DrawTl.pause();
-  planet2DrawTl.pause();
-  moonFullDrawTl.pause();
-  moonCrescentDrawTl.pause();
-  galaxyDrawTl.pause();
-  constellationDrawTl.pause();
-  cometDrawTl.pause();
-}
+// function stopAnimation() {
+//   tlRocket.pause();
+//   tlMoonCrescent.pause();
+//   tlPlanet1.pause();
+//   tlPlanet2.pause();
+//   tlGalaxy.pause();
+//   tlComet.pause();
+//   tlCometTrail.pause();
+//   tlConstellation.pause();
+//   planet1DrawTl.pause();
+//   planet2DrawTl.pause();
+//   moonFullDrawTl.pause();
+//   moonCrescentDrawTl.pause();
+//   galaxyDrawTl.pause();
+//   constellationDrawTl.pause();
+//   cometDrawTl.pause();
+// }
 
 
-images.map(el => {
-    const element = el.id + ' .drawPath';
-    const objectPaths = document.querySelectorAll(element);
-    const objectTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-    const delay = Math.floor (Math.random() * 20) + 10;
-    const repeatDelay = Math.floor (Math.random() * 40) + 20;
-    // animating
-    objectPaths.forEach((path, i) => {
-      const tl = new TimelineMax({repeatDelay:repeatDelay, delay:delay, paused: false})
-      tl.to(path, 3, {drawSVG:"0%"});
-      objectTl.add(tl, i);
-    })
-  })
+// images.map(el => {
+//     const element = el.id + ' .drawPath';
+//     const objectPaths = document.querySelectorAll(element);
+//     const objectTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+//     const delay = Math.floor (Math.random() * 20) + 10;
+//     const repeatDelay = Math.floor (Math.random() * 40) + 20;
+//     // animating
+//     objectPaths.forEach((path, i) => {
+//       const tl = new TimelineMax({repeatDelay:repeatDelay, delay:delay, paused: false})
+//       tl.to(path, 3, {drawSVG:"0%"});
+//       objectTl.add(tl, i);
+//     })
+//   })
 
-const planet1Draw = document.querySelectorAll('#planet-1 .drawPath');
-const planet1DrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-planet1Draw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:40, delay:10})
-  tl.to(path, 3, {drawSVG:"0%"});
-  planet1DrawTl.add(tl, i);
-})
+// const planet1Draw = document.querySelectorAll('#planet-1 .drawPath');
+// const planet1DrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+// planet1Draw.forEach((path, i) => {
+//   const tl = new TimelineMax({repeatDelay:40, delay:10})
+//   tl.to(path, 3, {drawSVG:"0%"});
+//   planet1DrawTl.add(tl, i);
+// })
 
-const planet2Draw = document.querySelectorAll('#planet-2 .drawPath');
-const planet2DrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-planet2Draw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:25, delay:45})
-  tl.to(path, 3, {drawSVG:"0%"});
-  planet2DrawTl.add(tl, i);
-})
+// const planet2Draw = document.querySelectorAll('#planet-2 .drawPath');
+// const planet2DrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+// planet2Draw.forEach((path, i) => {
+//   const tl = new TimelineMax({repeatDelay:25, delay:45})
+//   tl.to(path, 3, {drawSVG:"0%"});
+//   planet2DrawTl.add(tl, i);
+// })
 
-const cometDraw = document.querySelectorAll('#comet .drawPath');
-const cometDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-cometDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:10, delay:25})
-  tl.to(path, 3, {drawSVG:"0%"});
-  cometDrawTl.add(tl, i);
-})
+// const cometDraw = document.querySelectorAll('#comet .drawPath');
+// const cometDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+// cometDraw.forEach((path, i) => {
+//   const tl = new TimelineMax({repeatDelay:10, delay:25})
+//   tl.to(path, 3, {drawSVG:"0%"});
+//   cometDrawTl.add(tl, i);
+// })
 
-const rocketDraw = document.querySelectorAll('#rocket .drawPath');
-const rocketDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-rocketDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:30, delay:35})
-  tl.to(path, 3, {drawSVG:"0%"});
-  rocketDrawTl.add(tl, i);
-})
-const galaxyDraw = document.querySelectorAll('#comet .drawPath');
-const galaxyDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-galaxyDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:35, delay:55})
-  tl.to(path, 3, {drawSVG:"0%"});
-  galaxyDrawTl.add(tl, i);
-})
-const moonCrescentDraw = document.querySelectorAll('#moon-crescent .drawPath');
-const moonCrescentDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-moonCrescentDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:22, delay:65})
-  tl.to(path, 3, {drawSVG:"0%"});
-  moonCrescentDrawTl.add(tl, i);
-})
-const constellationDraw = document.querySelectorAll('#constellation .drawPath');
-const constellationDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
-constellationDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:28, delay:28})
-  tl.to(path, 3, {drawSVG:"0%"});
-  constellationDrawTl.add(tl, i);
-})
+// const rocketDraw = document.querySelectorAll('#rocket .drawPath');
+// const rocketDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+// rocketDraw.forEach((path, i) => {
+//   const tl = new TimelineMax({repeatDelay:30, delay:35})
+//   tl.to(path, 3, {drawSVG:"0%"});
+//   rocketDrawTl.add(tl, i);
+// })
+// const galaxyDraw = document.querySelectorAll('#comet .drawPath');
+// const galaxyDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+// galaxyDraw.forEach((path, i) => {
+//   const tl = new TimelineMax({repeatDelay:35, delay:55})
+//   tl.to(path, 3, {drawSVG:"0%"});
+//   galaxyDrawTl.add(tl, i);
+// })
+// const moonCrescentDraw = document.querySelectorAll('#moon-crescent .drawPath');
+// const moonCrescentDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+// moonCrescentDraw.forEach((path, i) => {
+//   const tl = new TimelineMax({repeatDelay:22, delay:65})
+//   tl.to(path, 3, {drawSVG:"0%"});
+//   moonCrescentDrawTl.add(tl, i);
+// })
+// const constellationDraw = document.querySelectorAll('#constellation .drawPath');
+// const constellationDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+// constellationDraw.forEach((path, i) => {
+//   const tl = new TimelineMax({repeatDelay:28, delay:28})
+//   tl.to(path, 3, {drawSVG:"0%"});
+//   constellationDrawTl.add(tl, i);
+// })
 
 
 
