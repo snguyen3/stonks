@@ -1,4 +1,7 @@
 
+import math
+
+
 def main():
     print(getStockData("GME", "5y", "3mo"))
 
@@ -88,12 +91,14 @@ def getStockData(tickers, period, interval):
         data = data.reset_index()
 
         for i in range(0, data.shape[0]):
-            x = data.iloc[i]['Date']
-            y = data.iloc[i]['Open']
-            series['data'].append([x, y])
-
+            try:
+                x = data.iloc[i]['Date']
+                y = data.iloc[i]['Open']
+                if(not math.isnan(y)):
+                    series['data'].append([x, y])
+            except:
+                pass
         retVal.append(series)
-
     """
     return stock scores over time
     [{
@@ -105,6 +110,7 @@ def getStockData(tickers, period, interval):
         'data':[[x,y],[x,y],[x,y],[x,y]]
     }]
     """
+
     return retVal
 
 

@@ -1,6 +1,30 @@
 const ticker = "DogeCoin";
 const subreddit = "SatoshiStreetBets";
 
+function fillSparkChart(tickerName) {
+  stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+  stonkUrl.searchParams.append("ticker", tickerName)
+  stonkUrl.searchParams.append("period", "5y")
+  stonkUrl.searchParams.append("interval", "1mo")
+  axios({
+    method: 'GET',
+    url: stonkUrl.href
+  }).then(function (response) {
+    data = response.data['data'][0]['data']
+    latest = data["pop"]()
+    latestPrice = latest[1]
+    document.getElementById(tickerName).innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+    return 'ok';
+  })
+}
+
+sparkIds = ['GME', 'TSLA', 'NDX', 'BB'];
+sparkIds.forEach(tk => fillSparkChart(tk));
+
+// document.getElementById('GME').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+// document.getElementById('TSLA').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+// document.getElementById('BB').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+
 document.body.scroll = "no";
 document.body.style.overflow = 'hidden';
 document.height = window.innerHeight;
@@ -57,16 +81,22 @@ new ApexCharts(document.querySelector("#spark4"), spark4).render();
 
 
 var stonkOptions = JSON.parse(JSON.stringify(defaultLineOptions));
-seriesData = generateTimeSeriesData(38.2, 45.0, new Date(2019, 1, 1, 0, 0, 0), new Date(), 24 * 14)
 stonkOptions.id = "Stonk Chart"
-stonkOptions.series[0] = {
-  'data': seriesData.map(function (pair) { return [pair[0], seriesData[0][1] * 2 - pair[1] * 0.5] }),
-  'name': "DogeCoin"
-};
-stonkOptions.series.push({
-  'data': seriesData,
-  'name': "GME"
-});
+stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+stonkUrl.searchParams.append("ticker", "NDX")
+stonkUrl.searchParams.append("period", "5y")
+stonkUrl.searchParams.append("interval", "1mo")
+axios({
+  method: 'GET',
+  url: stonkUrl.href
+}).then(function (response) {
+  data = response.data['data'][0]['data'] // This should contain the stonk name and data -- Everything you need to input into the ApexChart
+  stonkChart.updateSeries([{
+    name: "Quack",
+    data: data
+  }])
+})
+
 stonkOptions.title = {
   text: `${ticker}`,
   align: 'left',
@@ -93,14 +123,14 @@ sentimentOptions.legend = {
   position: 'top',
   horizontalAlign: 'right',
 }
-sentimentOptions.series[0] = {
-  'data': seriesData.map(function (pair) { return [pair[0], pair[1] * 2] }),
-  'name': "DogeCoin"
-};
-sentimentOptions.series.push({
-  'data': seriesData,
-  'name': "GME"
-});
+// sentimentOptions.series[0] = {
+//   'data': seriesData.map(function (pair) { return [pair[0], pair[1] * 2] }),
+//   'name': "DogeCoin"
+// };
+// sentimentOptions.series.push({
+//   'data': seriesData,
+//   'name': "GME"
+// });
 
 
 var sentimentChart = new ApexCharts(
@@ -208,5 +238,111 @@ document.querySelector("#all").addEventListener('click', function (e) {
 document.querySelector("#ytd").addEventListener('click', function () {
 
 });
+
+// Button presses 
+document.getElementById("NDX-btn").addEventListener("click", NDXfunction);
+function NDXfunction() {
+  var stonkOptions = JSON.parse(JSON.stringify(defaultLineOptions));
+  stonkOptions.id = "Stonk Chart"
+  stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+  stonkUrl.searchParams.append("ticker", "NDX")
+  stonkUrl.searchParams.append("period", "5y")
+  stonkUrl.searchParams.append("interval", "1mo")
+  axios({
+    method: 'GET',
+    url: stonkUrl.href
+  }).then(function (response) {
+    data = response.data['data'][0]['data']
+    stonkChart.updateSeries([{
+      name: "NASDAQ",
+      data: data
+    }])
+    stonkChart.updateOptions({
+      title: {
+        text: 'NASDAQ',
+        align: 'left'
+      }
+    })
+  })
+}
+
+
+document.getElementById("GME-btn").addEventListener("click", GMEfunction);
+function GMEfunction() {
+  var stonkOptions = JSON.parse(JSON.stringify(defaultLineOptions));
+  stonkOptions.id = "Stonk Chart"
+  stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+  stonkUrl.searchParams.append("ticker", "GME")
+  stonkUrl.searchParams.append("period", "5y")
+  stonkUrl.searchParams.append("interval", "1mo")
+  axios({
+    method: 'GET',
+    url: stonkUrl.href
+  }).then(function (response) {
+    data = response.data['data'][0]['data']
+    stonkChart.updateSeries([{
+      name: "Gamestop",
+      data: data
+    }])
+    stonkChart.updateOptions({
+      title: {
+        text: 'Gamestop',
+        align: 'left'
+      }
+    })
+  })
+}
+
+document.getElementById("TSLA-btn").addEventListener("click", TSLAfunction);
+function TSLAfunction() {
+  var stonkOptions = JSON.parse(JSON.stringify(defaultLineOptions));
+  stonkOptions.id = "Stonk Chart"
+  stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+  stonkUrl.searchParams.append("ticker", "TSLA")
+  stonkUrl.searchParams.append("period", "5y")
+  stonkUrl.searchParams.append("interval", "1mo")
+  axios({
+    method: 'GET',
+    url: stonkUrl.href
+  }).then(function (response) {
+    data = response.data['data'][0]['data']
+    stonkChart.updateSeries([{
+      name: "Tesla",
+      data: data
+    }])
+    stonkChart.updateOptions({
+      title: {
+        text: 'Tesla',
+        align: 'left'
+      }
+    })
+  })
+}
+document.getElementById("BB-btn").addEventListener("click", BBfunction);
+function BBfunction() {
+  var stonkOptions = JSON.parse(JSON.stringify(defaultLineOptions));
+  stonkOptions.id = "Stonk Chart"
+  stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+  stonkUrl.searchParams.append("ticker", "BB")
+  stonkUrl.searchParams.append("period", "5y")
+  stonkUrl.searchParams.append("interval", "1mo")
+  axios({
+    method: 'GET',
+    url: stonkUrl.href
+  }).then(function (response) {
+    data = response.data['data'][0]['data']
+    stonkChart.updateSeries([{
+      name: "Blackberry",
+      data: data
+    }])
+    stonkChart.updateOptions({
+      title: {
+        text: 'BlackBerry Ltd',
+        align: 'left'
+      }
+    })
+  })
+}
+
 
 
