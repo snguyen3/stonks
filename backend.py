@@ -32,12 +32,13 @@ def handleGetFinancialData():
         return "Error: No interval field provided. Please specify a interval."
 
     stonks = analytics_tools.getStockData([ticker], period, interval)
+
     return jsonify({'data': stonks})
 
 
 @app.route('/api/v1/sentimentData', methods=['GET'])
 def handleGetSentimentData():
-    return "Error: Not yet implemented."
+    return jsonify({"key": "Error: Not yet implemented."})
     ticker = ''
     period = ''
     interval = ''
@@ -83,4 +84,4 @@ def dashboard():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True, threaded=True)

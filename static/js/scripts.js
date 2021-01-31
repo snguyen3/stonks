@@ -1,58 +1,28 @@
 const ticker = "DogeCoin";
 const subreddit = "SatoshiStreetBets";
 
-stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
-stonkUrl.searchParams.append("ticker", "NDX")
-stonkUrl.searchParams.append("period", "5y")
-stonkUrl.searchParams.append("interval", "1mo")
-axios({
-  method: 'GET',
-  url: stonkUrl.href,
-}).then(function (response) {
-  data = response.data['data'][0]['data']
-  latest = data["pop"]()
-  latestPrice = latest[1]
-  document.getElementById('NDX').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
-})
+async function fillSparkChart(tickerName) {
+  stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+  stonkUrl.searchParams.append("ticker", tickerName)
+  stonkUrl.searchParams.append("period", "5y")
+  stonkUrl.searchParams.append("interval", "1mo")
+  axios({
+    method: 'GET',
+    url: stonkUrl.href
+  }).then(function (response) {
+    data = response.data['data'][0]['data']
+    latest = data["pop"]()
+    latestPrice = latest[1]
+    document.getElementById(tickerName).innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+  })
+}
 
-stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
-stonkUrl.searchParams.append("ticker", "TSLA")
-stonkUrl.searchParams.append("period", "5y")
-stonkUrl.searchParams.append("interval", "1mo")
-axios({
-  method: 'GET',
-  url: stonkUrl.href,
-}).then(function (response) {
-  data = response.data['data'][0]['data']
-  latest = data["pop"]()
-  latestPrice = latest[1]
-})
+sparkIds = ['GME', 'TSLA', 'NDX', 'BB']
+sparkIds.forEach(tk => await fillSparkChart(tk));
 
-stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
-stonkUrl.searchParams.append("ticker", "GME")
-stonkUrl.searchParams.append("period", "5y")
-stonkUrl.searchParams.append("interval", "1mo")
-axios({
-  method: 'GET',
-  url: stonkUrl.href,
-}).then(function (response) {
-  data = response.data['data'][0]['data']
-  latest = data["pop"]()
-  latestPrice = latest[1]
-})
-
-stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
-stonkUrl.searchParams.append("ticker", "NOK")
-stonkUrl.searchParams.append("period", "5y")
-stonkUrl.searchParams.append("interval", "1mo")
-axios({
-  method: 'GET',
-  url: stonkUrl.href,
-}).then(function (response) {
-  data = response.data['data'][0]['data']
-  latest = data["pop"]()
-  latestPrice = latest[1]
-})
+// document.getElementById('GME').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+// document.getElementById('TSLA').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+// document.getElementById('BB').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
 
 document.body.scroll = "no";
 document.body.style.overflow = 'hidden';
