@@ -1,42 +1,78 @@
 from flask import Flask, render_template, request, redirect, jsonify
 import random
 import time
-import main
+import WSBSentimentAnalyzer
+import analytics_tools
 
 app = Flask(__name__)
 
 
 # Create some test data for our catalog in the form of a list of dictionaries.
-books = [
-    {'id': 0,
-     'title': 'A Fire Upon the Deep',
-     'author': 'Vernor Vinge',
-     'first_sentence': 'The coldsleep itself was dreamless.',
-     'year_published': '1992'},
-    {'id': 1,
-     'title': 'The Ones Who Walk Away From Omelas',
-     'author': 'Ursula K. Le Guin',
-     'first_sentence': 'With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.',
-     'published': '1973'},
-    {'id': 2,
-     'title': 'Dhalgren',
-     'author': 'Samuel R. Delany',
-     'first_sentence': 'to wound the autumnal city.',
-     'published': '1975'}
-]
+
+@app.route('/api/v1/financialData', methods=['GET'])
+def handleGetFinancialData():
+    ticker = ''
+    period = ''
+    interval = ''
+
+    if 'ticker' in request.args:
+        ticker = str(request.args['ticker'])
+    else:
+        return "Error: No ticker field provided. Please specify a ticker."
+
+    if 'period' in request.args:
+        period = str(request.args['period'])
+        print(period)
+    else:
+        return "Error: No period field provided. Please specify a period."
+
+    if 'interval' in request.args:
+        interval = str(request.args['interval'])
+    else:
+        return "Error: No interval field provided. Please specify a interval."
+
+    stonks = analytics_tools.getStockData([ticker], period, interval)
+    return jsonify({'data': stonks})
 
 
-@app.route('/api/v1/resources/books/all', methods=['GET'])
-def api_all():
-    return jsonify(books)
+@app.route('/api/v1/sentimentData', methods=['GET'])
+def handleGetSentimentData():
+    return "Error: Not yet implemented."
+    ticker = ''
+    period = ''
+    interval = ''
+
+    if 'ticker' in request.args:
+        ticker = str(request.args['ticker'])
+    else:
+        return "Error: No ticker field provided. Please specify a ticker."
+
+    if 'period' in request.args:
+        period = str(request.args['period'])
+        print(period)
+    else:
+        return "Error: No period field provided. Please specify a period."
+
+    if 'interval' in request.args:
+        interval = str(request.args['interval'])
+    else:
+        return "Error: No interval field provided. Please specify a interval."
+
+
+analyzer = WSBSentimentAnalyzer.SentimentAnalyzer()
+parser = WSBSentimentAnalyzer.RedditDataParser()
+# data = parser.getRedditData('wsb-sample.csv', 80000)
+# parsed_data = parser.parseData(data)
 
 
 @app.route('/', methods=['GET'])
 @app.route('/index.html', methods=['GET'])
 def dashboard():
+
     data = {}
     tickers = ['NDX', 'GME', 'AAPL', 'SPY']
-    stock_data = main.getStockData(tickers, "1mo", "1d")
+    stock_data = analytics_tools.getStockData(tickers, "1mo", "1d")
+
     for i, d in enumerate(stock_data):
         data[d['name']] = {}
         data[d['name']]['prices'] = d['data']

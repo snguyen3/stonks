@@ -2,27 +2,27 @@ let w = window.innerWidth;
 let h = window.innerHeight;
 let animated = false;
 
-const select = function(el) {
+const select = function (el) {
   return document.getElementById(el);
 };
 
 const wrapper = select("main-wrapper");
 const images = [
-  { id: "#planet-1", name:"planet-1" },
-  { id: "#planet-2", name:"planet-2" },
-  { id: "#moon-crescent", name:"moon-crescent" },
-  { id: "#rocket", name:"rocket" },
-  { id: "#constellation", name:"constellation" },
-  { id: "#comet", name:"comet" },
-  { id: "#galaxy", name:"galaxy" }
+  { id: "#planet-1", name: "planet-1" },
+  { id: "#planet-2", name: "planet-2" },
+  { id: "#moon-crescent", name: "moon-crescent" },
+  { id: "#rocket", name: "rocket" },
+  { id: "#constellation", name: "constellation" },
+  { id: "#comet", name: "comet" },
+  { id: "#galaxy", name: "galaxy" }
 ];
 const stars = ["#star-1", "#star-2", "#star-3"];
 
 
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
   w = window.innerWidth;
   h = window.innerHeight;
-//   init();
+  //   init();
 });
 
 // building the pattern
@@ -33,7 +33,7 @@ function El(image, x, y, delay) {
   this.delay = delay;
 }
 
-El.prototype.attach = function() {
+El.prototype.attach = function () {
   this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   this.use = document.createElementNS("http://www.w3.org/2000/svg", "use");
   this.use.setAttributeNS(
@@ -45,12 +45,12 @@ El.prototype.attach = function() {
   this.svg.setAttribute(
     "style",
     "top: " +
-      this.y +
-      "px; left: " +
-      this.x +
-      "px; animation-delay: " +
-      this.delay +
-      "s;"
+    this.y +
+    "px; left: " +
+    this.x +
+    "px; animation-delay: " +
+    this.delay +
+    "s;"
   );
 };
 
@@ -60,7 +60,7 @@ function Star(image, x, y) {
   this.y = y;
 }
 
-Star.prototype.attach = function() {
+Star.prototype.attach = function () {
   this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   this.use = document.createElementNS("http://www.w3.org/2000/svg", "use");
   this.use.setAttributeNS(
@@ -262,55 +262,55 @@ function stopAnimation() {
 //   })
 
 const planet1Draw = document.querySelectorAll('#planet-1 .drawPath');
-const planet1DrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+const planet1DrawTl = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 planet1Draw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:40, delay:10})
-  tl.to(path, 3, {drawSVG:"0%"});
+  const tl = new TimelineMax({ repeatDelay: 40, delay: 10 })
+  tl.to(path, 3, { drawSVG: "0%" });
   planet1DrawTl.add(tl, i);
 })
 
 const planet2Draw = document.querySelectorAll('#planet-2 .drawPath');
-const planet2DrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+const planet2DrawTl = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 planet2Draw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:25, delay:45})
-  tl.to(path, 3, {drawSVG:"0%"});
+  const tl = new TimelineMax({ repeatDelay: 25, delay: 45 })
+  tl.to(path, 3, { drawSVG: "0%" });
   planet2DrawTl.add(tl, i);
 })
 
 const cometDraw = document.querySelectorAll('#comet .drawPath');
-const cometDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+const cometDrawTl = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 cometDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:10, delay:25})
-  tl.to(path, 3, {drawSVG:"0%"});
+  const tl = new TimelineMax({ repeatDelay: 10, delay: 25 })
+  tl.to(path, 3, { drawSVG: "0%" });
   cometDrawTl.add(tl, i);
 })
 
 const rocketDraw = document.querySelectorAll('#rocket .drawPath');
-const rocketDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+const rocketDrawTl = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 rocketDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:30, delay:35})
-  tl.to(path, 3, {drawSVG:"0%"});
+  const tl = new TimelineMax({ repeatDelay: 30, delay: 35 })
+  tl.to(path, 3, { drawSVG: "0%" });
   rocketDrawTl.add(tl, i);
 })
 const galaxyDraw = document.querySelectorAll('#comet .drawPath');
-const galaxyDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+const galaxyDrawTl = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 galaxyDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:35, delay:55})
-  tl.to(path, 3, {drawSVG:"0%"});
+  const tl = new TimelineMax({ repeatDelay: 35, delay: 55 })
+  tl.to(path, 3, { drawSVG: "0%" });
   galaxyDrawTl.add(tl, i);
 })
 const moonCrescentDraw = document.querySelectorAll('#moon-crescent .drawPath');
-const moonCrescentDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+const moonCrescentDrawTl = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 moonCrescentDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:22, delay:65})
-  tl.to(path, 3, {drawSVG:"0%"});
+  const tl = new TimelineMax({ repeatDelay: 22, delay: 65 })
+  tl.to(path, 3, { drawSVG: "0%" });
   moonCrescentDrawTl.add(tl, i);
 })
 const constellationDraw = document.querySelectorAll('#constellation .drawPath');
-const constellationDrawTl = new TimelineMax({repeat: -1, yoyo: true, paused: true});
+const constellationDrawTl = new TimelineMax({ repeat: -1, yoyo: true, paused: true });
 constellationDraw.forEach((path, i) => {
-  const tl = new TimelineMax({repeatDelay:28, delay:28})
-  tl.to(path, 3, {drawSVG:"0%"});
+  const tl = new TimelineMax({ repeatDelay: 28, delay: 28 })
+  tl.to(path, 3, { drawSVG: "0%" });
   constellationDrawTl.add(tl, i);
 })
 

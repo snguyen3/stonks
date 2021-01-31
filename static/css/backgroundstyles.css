@@ -2,10 +2,11 @@ html,
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  background: #150d35;
+  /* background: #150d35; */
   padding: 0;
   margin: 0;
+  position: relative;
+  background-repeat: no-repeat;
 }
 
 * {
@@ -14,18 +15,18 @@ body {
 }
 
 body {
-  background: #81a6e0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#81a6e0), to(#cc7bc5));
+  /* background: #81a6e0; */
+  /* background: -webkit-gradient(linear, left top, left bottom, from(#81a6e0), to(#cc7bc5)); */
   background: linear-gradient(to bottom, #81a6e0 0%, #cc7bc5 100%);
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-/* svg {
+svg {
   opacity: 1;
 }
 
-svg.hide {
-  display: none;
+/* svg.hide {
+  /* display: none; */
 } */
 
 /* svg * {
@@ -35,18 +36,32 @@ svg.hide {
   stroke: #ffffff;
 } */
 
-/* svg {
-  width: 80px;
-  height: 80px;
+svg.background {
+  background-size: 80px 80px;
   margin: 10px;
-  opacity: 0.9;
+  opacity: 1;
   position: absolute;
-} */
-
-svg.star {
+  stroke: inherit;
+  -webkit-animation-delay: inherit;
+          animation-delay: inherit;
+  stroke: #ffffff;
+}
+#main {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  opacity: 1;
+  position: absolute;
+  stroke: inherit;
+  -webkit-animation-delay: inherit;
+          animation-delay: inherit;
+  stroke: #ffffff;
+}
+.star {
   width: 12px;
   height: 12px;
   opacity: 0.4;
+  position: absolute;
 }
 
 .stars-wrapper {
@@ -62,7 +77,7 @@ svg.star {
   position: absolute;
 }
 
-#toggle-wrapper {
+/* #toggle-wrapper {
   width: 280px;
   height: 160px;
   position: absolute;
@@ -84,7 +99,7 @@ svg.star {
   font-family: "Kodchasan", Arial, sans-serif;
   font-size: 18px;
   letter-spacing: 2px;
-  color: #81a6e0;
+  color: #81a6e0; */
 }
 
 #toggle-wrapper p {
@@ -108,7 +123,7 @@ input[type="checkbox"] {
   left: -99em;
 }
 
-.toggle {
+/* .toggle {
   cursor: pointer;
   position: relative;
   width: 100px;
@@ -117,14 +132,14 @@ input[type="checkbox"] {
   border-radius: 30px;
   -webkit-transition: background-color 0.2s cubic-bezier(0.6, 0, 0.2, 1);
   transition: background-color 0.2s cubic-bezier(0.6, 0, 0.2, 1);
-}
+} */
 
 .toggle:before, .toggle:after {
   position: absolute;
   top: 15px;
 }
 
-.toggle:before {
+/* .toggle:before {
   content: "OFF";
   left: -58px;
   color: #BF85CB;
@@ -134,7 +149,7 @@ input[type="checkbox"] {
   content: "ON";
   right: -48px;
   color: #81A6E0;
-}
+} */
 
 .moon-toggle {
   margin: 0;
@@ -162,7 +177,7 @@ input[type="checkbox"] {
   transition: all 0.5s cubic-bezier(0.6, 0, 0.2, 1);
 }
 
-input:checked + .toggle {
+/* input:checked + .toggle {
   background-color: #BF85CB;
 }
 
@@ -172,7 +187,7 @@ input:checked + .toggle:before {
 
 input:checked + .toggle:after {
   color: #BF85CB;
-}
+} */
 
 input:checked + .toggle .toggle-handler {
   -webkit-transform: translateX(50px);

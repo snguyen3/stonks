@@ -52,7 +52,7 @@ class SentimentAnalyzer:
 class RedditDataParser:
     def getRedditData(self, filename, entries):
         retVal = []
-        with open(filename, 'r') as dataFile:
+        with open(filename, 'r', encoding="utf-8") as dataFile:
             lines = dataFile.readlines()
             for i in range(len(lines) if entries > len(lines) else entries):
                 line = lines[i]

@@ -1,16 +1,22 @@
 
 body {
-  background: #343E59;
+  /* background: #343E59; */
   color: #777;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
+.class
 .body-bg {
   background: #F3F4FA !important;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 h1, h2, h3, h4, h5, h6, strong {
   font-weight: 600;
+  color: #eeeeee;
 }
 
 .content-area {

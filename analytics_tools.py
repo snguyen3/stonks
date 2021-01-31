@@ -51,6 +51,7 @@ def getStockData(tickers, period, interval):
             "name": ticker,
             "data": []
         }
+        print(interval)
         data = yf.download(
             # tickers list or string as well
             tickers=ticker,
