@@ -1,7 +1,7 @@
 const ticker = "DogeCoin";
 const subreddit = "SatoshiStreetBets";
 
-async function fillSparkChart(tickerName) {
+function fillSparkChart(tickerName) {
   stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
   stonkUrl.searchParams.append("ticker", tickerName)
   stonkUrl.searchParams.append("period", "5y")
@@ -14,11 +14,12 @@ async function fillSparkChart(tickerName) {
     latest = data["pop"]()
     latestPrice = latest[1]
     document.getElementById(tickerName).innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+    return 'ok';
   })
 }
 
-sparkIds = ['GME', 'TSLA', 'NDX', 'BB']
-// sparkIds.forEach(tk => await fillSparkChart(tk));
+sparkIds = ['GME', 'TSLA', 'NDX', 'BB'];
+sparkIds.forEach(tk => fillSparkChart(tk));
 
 // document.getElementById('GME').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
 // document.getElementById('TSLA').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
@@ -258,13 +259,13 @@ function NDXfunction() {
     }])
     stonkChart.updateOptions({
       title: {
-      text: 'NASDAQ',
-      align: 'left'
+        text: 'NASDAQ',
+        align: 'left'
       }
     })
-    })
-  }
-  
+  })
+}
+
 
 document.getElementById("GME-btn").addEventListener("click", GMEfunction);
 function GMEfunction() {
@@ -285,12 +286,12 @@ function GMEfunction() {
     }])
     stonkChart.updateOptions({
       title: {
-      text: 'Gamestop',
-      align: 'left'
+        text: 'Gamestop',
+        align: 'left'
       }
     })
-    })
-  }
+  })
+}
 
 document.getElementById("TSLA-btn").addEventListener("click", TSLAfunction);
 function TSLAfunction() {
@@ -311,12 +312,12 @@ function TSLAfunction() {
     }])
     stonkChart.updateOptions({
       title: {
-      text: 'Tesla',
-      align: 'left'
+        text: 'Tesla',
+        align: 'left'
       }
     })
-    })
-  }
+  })
+}
 document.getElementById("BB-btn").addEventListener("click", BBfunction);
 function BBfunction() {
   var stonkOptions = JSON.parse(JSON.stringify(defaultLineOptions));
@@ -336,12 +337,12 @@ function BBfunction() {
     }])
     stonkChart.updateOptions({
       title: {
-      text: 'BlackBerry Ltd',
-      align: 'left'
+        text: 'BlackBerry Ltd',
+        align: 'left'
       }
     })
-    })
-  }
+  })
+}
 
 
 
