@@ -2,6 +2,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import json
 import ast
 
+
 class SentimentAnalyzer:
     sentimentIntensityAnalyzer = None
 
