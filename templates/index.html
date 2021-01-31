@@ -242,8 +242,8 @@
             <div class="col-md-3">
               <div class="box box1">
                 <div class="details">
-                  <h3>{{ data['NDX']['prices'][-1][1] }}</h3>
-                  <h4>NASDAQ 100</h4>
+                  <h3 id='NDX'>This will be replaced</h3>
+                  <h4>NASDAQ-100</h4>
                 </div>
                 <div id="spark1"></div>
               </div>
@@ -251,8 +251,8 @@
             <div class="col-md-3">
               <div class="box box2">
                 <div class="details">
-                  <h3>{{ data['GME']['prices'][-1][1] }}</h3>
-                  <h4>GME</h4>
+                  <h3>{{ "{:.2f}".format(data['GME']['prices'][-1][1]) }}</h3>
+                  <h4>GameStop Corp.</h4>
                 </div>
                 <div id="spark2"></div>
               </div>
@@ -260,8 +260,8 @@
             <div class="col-md-3">
               <div class="box box3">
                 <div class="details">
-                  <h3>{{ data['AAPL']['prices'][-1][1] }}</h3>
-                  <h4>Bitcoin</h4>
+                  <h3>{{ "{:.2f}".format(data['GME']['prices'][-1][1]) }}</h3>
+                  <h4>Tesla, Inc</h4>
                 </div>
                 <div id="spark3"></div>
               </div>
@@ -269,8 +269,8 @@
             <div class="col-md-3">
               <div class="box box4">
                 <div class="details">
-                  <h3>{{ data['SPY']['prices'][-1][1] }}</h3>
-                  <h4>Dogecoin</h4>
+                  <h3>{{ "{:.2f}".format(data['GME']['prices'][-1][1]) }}</h3>
+                  <h4>BlackBerry Ltd</h4>
                 </div>
                 <div id="spark4"></div>
               </div>
@@ -327,6 +327,7 @@
     <div id="chart-line3"></div>
 
     <div id="bruhhhh"></div> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/static/data/DummyData.js"></script>
   <script src="/static/js/ApexChartOptions.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>

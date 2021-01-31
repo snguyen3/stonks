@@ -1,6 +1,59 @@
 const ticker = "DogeCoin";
 const subreddit = "SatoshiStreetBets";
 
+stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+stonkUrl.searchParams.append("ticker", "NDX")
+stonkUrl.searchParams.append("period", "5y")
+stonkUrl.searchParams.append("interval", "1mo")
+axios({
+  method: 'GET',
+  url: stonkUrl.href,
+}).then(function (response) {
+  data = response.data['data'][0]['data']
+  latest = data["pop"]()
+  latestPrice = latest[1]
+  document.getElementById('NDX').innerHTML = (Math.round(latestPrice * 100) / 100).toFixed(2);
+})
+
+stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+stonkUrl.searchParams.append("ticker", "TSLA")
+stonkUrl.searchParams.append("period", "5y")
+stonkUrl.searchParams.append("interval", "1mo")
+axios({
+  method: 'GET',
+  url: stonkUrl.href,
+}).then(function (response) {
+  data = response.data['data'][0]['data']
+  latest = data["pop"]()
+  latestPrice = latest[1]
+})
+
+stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+stonkUrl.searchParams.append("ticker", "GME")
+stonkUrl.searchParams.append("period", "5y")
+stonkUrl.searchParams.append("interval", "1mo")
+axios({
+  method: 'GET',
+  url: stonkUrl.href,
+}).then(function (response) {
+  data = response.data['data'][0]['data']
+  latest = data["pop"]()
+  latestPrice = latest[1]
+})
+
+stonkUrl = new URL("http://127.0.0.1:8080/api/v1/financialData")
+stonkUrl.searchParams.append("ticker", "NOK")
+stonkUrl.searchParams.append("period", "5y")
+stonkUrl.searchParams.append("interval", "1mo")
+axios({
+  method: 'GET',
+  url: stonkUrl.href,
+}).then(function (response) {
+  data = response.data['data'][0]['data']
+  latest = data["pop"]()
+  latestPrice = latest[1]
+})
+
 document.body.scroll = "no";
 document.body.style.overflow = 'hidden';
 document.height = window.innerHeight;
